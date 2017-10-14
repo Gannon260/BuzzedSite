@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+    <title>Scatter Chart</title>
+    <script src="http://www.chartjs.org/dist/2.7.0/Chart.bundle.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div style="width:75%">
+        <canvas id="canvas"></canvas>
+    </div>
+    <button id="randomizeData">Randomize Data</button>
+    <script>
+        var color = Chart.helpers.color;
+        var scatterChartData = {
+          /*options: {
+            scales: {
+              xAxes: [{
+                 ticks: {
+                  fontSize: 10
+                 }
+                }]
+              }
+           }*/
+            datasets: [{
+                label: "My First dataset",
+                borderColor: window.chartColors.red,
+                backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
+                data: [{
+                    x: 13,
+                    y: 23
+                }, {
+                    x: 12,
+                    y: 12
+                }, {
+                    x: 51,
+                    y: 12,
+                }, {
+                    x: 61,
+                    y: 23,
+                }, {
+                    x: 71,
+                    y: 62,
+                }, {
+                    x: 21,
+                    y: 84,
+                }, {
+                    x: 31,
+                    y: 45,
+                }]
+            }, {
+                label: "Everyone else",
+                borderColor: window.chartColors.blue,
+                backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+                data: [{
+                    x: 12,
+                    y: 51,
+                }, {
+                    x: 96,
+                    y: 52,
+                }, {
+                    x: 17,
+                    y: 45,
+                }, {
+                    x: 06,
+                    y: 94,
+                }, {
+                    x: 47,
+                    y: 87,
+                }, {
+                    x: 04,
+                    y: 57,
+                }, {
+                    x: 78,
+                    y: 64,
+                }]
+            }
+          ]
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myScatter = Chart.Scatter(ctx, {
+                data: scatterChartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Chart.js Scatter Chart',
+                        fontSize: 20
+                    },
+                    scales: {
+                      xAxes: [{
+                        ticks: {
+                          fontSize: 20
+                        }
+                      }],
+                      yAxes: [{
+                        ticks: {
+                          fontSize: 20
+                        }
+                      }]
+                    }
+                  }
+                });
+              };
+
+        /*document.getElementById('randomizeData').addEventListener('click', function() {
+            scatterChartData.datasets.forEach(function(dataset) {
+                dataset.data = dataset.data.map(function() {
+                    return {
+                        //x: randomScalingFactor(),
+                        //y: randomScalingFactor()
+                    };
+                });
+            });
+            window.myScatter.update();
+        });*/
+    </script>
+</body>
+
+</html>
