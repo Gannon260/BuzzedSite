@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Buzzed</title>
-        <link rel="stylesheet" href="style.css"/>
-    </head>
+<head>
+  <title>Buzzed</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
 
-    <body>
-      <div id="navbar">
-          <ul>
-            <li>
-              <a href= "top10.html" class="Top">Top 10</a>
-            </li>
-          </ul>
-      </div>
-
-      <h1>How Buzzed are you</h1>
-
-      <input id="checkbox" type="checkbox">Slept in a GT building (other than a dormitory/apartment) </input>
-      <br>
-      <input id="checkbox" type="checkbox">Slept for more than 10 hours every day of the week</input>
-      <br>
-      <input id="checkbox" type="checkbox">Pulled an all nighter for academics</input>
-      <br>
-      <input id="checkbox" type="checkbox">Partied all night</input>
-      <br>
-      <input id="checkbox" type="checkbox">Spend more than 5 hours a week a the TA office lab</input>
-      <br>
-      <input id="checkbox" type="checkbox">Lost your shoes at college</input>
-      <br>
-      <input id="checkbox" type="checkbox">Had someone follow you somewhere</input>
-      <br>
-      <input id="checkbox" type="checkbox">Exercise everyday</input>
-      <br>
-      <input id="checkbox" type="checkbox">Use the GT Bus system everyday</input>
-      <br>
+<body>
+  <div id="navbar">
+    <ul>
+      <li>
+        <a href= "top10.html" class="Top">Top 10<img src="buzz.png" alt="buzz" href="gatech.edu"></a>
+      </li>
 
 
+    </ul>
+  </div>
+
+  <h1>How Buzzed are you</h1>
+
+  <p>
+    <input id="checkbox" type="checkbox">Slept in a GT building (other than a dormitory/apartment) </input>
+    <br>
+    <input id="checkbox" type="checkbox">Slept for more than 10 hours every day of the week</input>
+    <br>
+    <input id="checkbox" type="checkbox">Pulled an all nighter for academics</input>
+    <br>
+    <input id="checkbox" type="checkbox">Partied all night</input>
+    <br>
+    <input id="checkbox" type="checkbox">Spend more than 5 hours a week a the TA office lab</input>
+    <br>
+    <input id="checkbox" type="checkbox">Lost your shoes at college</input>
+    <br>
+    <input id="checkbox" type="checkbox">Had someone follow you somewhere</input>
+    <br>
+    <input id="checkbox" type="checkbox">Exercise everyday</input>
+    <br>
+    <input id="checkbox" type="checkbox">Use the GT Bus system everyday</input>
+    <br>
+  </p>
+
+  <div class="wrapper">
+      <button class="button" onclick="checkboxes()">Buzz me in</button>
+  </div>
 
 
-    <button onclick="checkboxes()">Buzz me in</button>
+  <p id="printed"></p>
 
-    <p id="printed"></p>
+  <br/>
 
-        <br/>
-
-        </div>
-        <script src="script.js"></script>
-    </body>
+</div>
+<script src="script.js"></script>
+</body>
 </html>
