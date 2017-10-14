@@ -53,6 +53,13 @@ setTimeout(function() {
   });
 }, initialPause);
 
+function writeUserScore(name, odd, even) {
+  firebase.database().ref('user-scores').push({
+    odd: odd,
+    name: name,
+    even: even
+  });
+}
 
 function checkboxes()
 {
@@ -74,4 +81,5 @@ function checkboxes()
 
   }
   document.getElementById("printed").innerHTML = odd+even;
+  writeUserScore(name, odd, even);
 }
