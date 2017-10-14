@@ -21,6 +21,7 @@ body{
   list-style: none;
   width: 100%;
   text-align: center;
+  display: inline-block;
 }
 
 #navbar > ul > li {
@@ -63,6 +64,7 @@ img {
   width: 10%;
   height: 10%;
 }
+
 button{
   font-size: 100%;
 }
