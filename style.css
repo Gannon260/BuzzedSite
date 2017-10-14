@@ -3,69 +3,69 @@
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
 body{
-  color: pink;
+  color: yellow;
   font-family: 'Open Sans', sans-serif;
   color: #7f8c8d;
   background-color: #fefefe;
+  margin: 5cm;
   margin-top: 2em;
 }
+
 #navbar{
   color: darkblue;
-  background-color: lightgrey;
-}
-h1{
-  color: hotpink;
-}
-#intro1{
-  font-family: 'Indie Flower', cursive;
 }
 
-h1, h2, h3 {
-    font-family: 'Slabo 27px', serif;
-}
 #navbar > ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    width: 100%;
-    text-align: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  text-align: center;
 }
 
 #navbar > ul > li {
-    margin: 0 2em;
-    display: inline-block;
-    float: right;
-    border-bottom: solid #7f8c8d 2px;
-    position: relative;
+  margin: 0 2em;
+  display: inline-block;
+  float: right;
+  position: absolute;
+}
+
+h1{
+  color: gold;
+  font-size: 300%;
+  text-align: center;
+  font-family: 'Slabo 27px', serif;
+}
+
+p{
+  color: darkblue;
+  margin: 1cm;
+
+}
+
+input{
+  margin: 1em;
 }
 
 .nav-link {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    text-decoration: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  text-decoration: none;
 }
 
 a {
-    color: #7f8c8d;
+  color: #7f8c8d;
 }
 
 img {
-    border-radius: 20%;
+  border-radius: 20%;
+  width: 10%;
+  height: 10%;
 }
-
-#intro {
-    font-size: 4em;
+button{
+  font-size: 100%;
 }
-
-#about {
-    text-align: center;
-}
-
-#fancy {
-    color: #9DE79C;
-
-}
-#awesome{
-  color:#e242f4;
+.wrapper{
+  text-align: center;
 }
