@@ -57,13 +57,25 @@ setTimeout(function() {
         {
          var inputElems = document.getElementsByTagName("input"),
           count = 0;
+          var odd=0, even=0;
 
           for (var i=0; i<inputElems.length; i++) {
+            if(i%2 == 0 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)
+            {
+              odd++;
+
+            }
+            if(i%2 == 1 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)
+            {
+              even++;
+
+            }
              if (inputElems[i].type == "checkbox" && inputElems[i].checked == true){
                 count++;
 
              }
 
           }
-            alert(count);
+
+            alert(odd+" "+even);
        }
