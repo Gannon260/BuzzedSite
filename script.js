@@ -2,7 +2,8 @@ var fancyText = document.getElementById('fancy');
 var intervalTime = 150;
 var initialPause = 1000;
 var callbackPause = 500;
-
+var odd=0;
+var even=0;
 
 //callback is a function
 function deleteContent(callback) {
@@ -53,11 +54,11 @@ setTimeout(function() {
 }, initialPause);
 
 
-  function checkboxes()
+function checkboxes()
         {
          var inputElems = document.getElementsByTagName("input"),
           count = 0;
-          var odd=0, even=0;
+
 
           for (var i=0; i<inputElems.length; i++) {
             if(i%2 == 0 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)
@@ -70,12 +71,7 @@ setTimeout(function() {
               even++;
 
             }
-             if (inputElems[i].type == "checkbox" && inputElems[i].checked == true){
-                count++;
-
-             }
 
           }
-
-            alert(odd+" "+even);
+            document.getElementById("printed").innerHTML = odd+even;
        }
