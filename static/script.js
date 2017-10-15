@@ -3,11 +3,11 @@ var intervalTime = 150;
 var initialPause = 1000;
 var callbackPause = 500;
 
-function writeUserScore(social, academics, Usertime) {
+function writeUserScore(social, academics, timestamp) {
   firebase.database().ref('user-scores').push({
     social: social,
     academics: academics,
-    Usertime: Usertime
+    timestamp: timestamp
   });
 }
 
@@ -34,8 +34,8 @@ function submitQuiz()
 
   }
 
-  var Usertime = new Date().getTime()
+  var timestamp = new Date().getTime()
 
   document.getElementById("printed").innerHTML = odd+even;
-  writeUserScore(odd, even, Usertime);
+  writeUserScore(odd, even, timestamp);
 }

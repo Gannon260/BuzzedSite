@@ -93,8 +93,7 @@
         });*/
 
         var userScoresRef = firebase.database().ref('user-scores');
-        userScoresRef.on('child_added', function(data) {
-          console.log(data.val());
+        userScoresRef.orderByChild("timestamp").limitToLast(5).on('child_added', function(data) {
           var social = data.val().social;
           var academics = data.val().academics;
           myScatter.data.datasets[0].data.push(
@@ -104,7 +103,7 @@
             }
           );
           myScatter.update();
-          console.log(myScatter.data.datasets);
+
         });
     </script>
 </body>
