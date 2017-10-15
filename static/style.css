@@ -19,6 +19,17 @@ body{
   margin: 0;
   opacity: 10%;
 }
+input[type='checkbox'] {
+    -webkit-appearance:none;
+    width:20px;
+    height:20px;
+    background:white;
+    border-radius:5px;
+    border:2px solid gold;
+}
+input[type='checkbox']:checked {
+    background: darkblue;
+}
 
 span{
   color: darkblue;
@@ -64,11 +75,10 @@ a {
 
 button{
   font-size: 100%;
-  margin-left: 10cm;
-  margin-right: 10cm;
   float: center;
   border-radius: 10%;
 }
+
 .newchart{
   float: center;
   width: 75%;
@@ -78,6 +88,7 @@ button{
 }
 .wrapper{
   text-align: center;
+  float: center;
 }
 @media only screen and (max-device-width: 1024px) {
     .parallax {
