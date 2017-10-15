@@ -105,32 +105,6 @@ function submitQuiz()
 
   }
 
-  // var odd=0;
-  // var even=0;
-  //
-  //
-  // for (var i=0; i<inputElems.length; i++) {
-  //   if(i%2 == 0 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)
-  //   {
-  //     odd++;
-  //
-  //   }
-  //   if(i%2 == 1 && inputElems[i].type == "checkbox"
-  //    && inputElems[i].checked == true)
-  //   {
-  //     even++;
-  //
-  //   }
-  //
-  // }
-  //
-  // function writeQuestion(type, question) {
-  //   firebase.database().ref('questions').push({
-  //     type: type,
-  //     question: question
-  //   });
-  // }
-
   var timestamp = new Date().getTime();
   // var percentSocial = (social/totalSocial).toFixed(3)*100;
   // var percentAcademic = (academic/totalAcademic).toFixed(3)*100;
@@ -141,12 +115,19 @@ function submitQuiz()
 
   // document.getElementById("printed").innerHTML = odd+even;
   writeUserScore(social, totalSocial, academic, totalAcademic, timestamp);
+
+  myScatter.data.datasets[1].data.push(
+    {
+      x: toInteger((social/totalSocial)*100),
+      y: toInteger((academic/totalAcademic)*100),
+    }
+  );
+  myScatter.update();
   //writeQuestion("consistency", "Whats the diff between Jam and Jelly?");
   //writeQuestion("it hurt when i did", "Did it hurt when you fell from Tennessee?");
 }
 
 //Chart
-
 
 var color = Chart.helpers.color;
 var scatterChartData = {
@@ -159,33 +140,46 @@ var scatterChartData = {
       }
    }*/
     datasets: [{
-        label: "Responses",
-        pointRadius: 10,
+        // label: "Responses",
+        displayLabel: false,
+        pointRadius: 6,
         borderColor: window.chartColors.blue,
         backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
         data: [{
 
         }]
-}
-  ]
+
+        },{
+        // label: "You",
+        pointRadius: 7,
+        borderColor: window.chartColors.red,
+        backgroundColor: color(window.chartColors.red).alpha(0.6).rgbString(),
+        data: [{
+
+        }]
+    }]
 };
 window.onload = function() {
     var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.canvas.width = 300;
+    ctx.canvas.height = 300;
     var myScatter = Chart.Scatter(ctx, {
         data: scatterChartData,
         options: {
+            legend: {
+              display: false
+            },
             title: {
                 display: true,
-                text: 'Buzzinga',
+                text: 'Results',
                 fontSize: 20
             },
             scales: {
               xAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: "Social",
-                  fontSize: 20
-                },
+                  labelString: "Buzz",
+                  fontSize: 20},
                 ticks: {
                   beginAtZero: true,
                   steps: 10,
@@ -197,7 +191,7 @@ window.onload = function() {
               yAxes: [{
                 scaleLabel: {
                   display: true,
-                  labelString: "Academic",
+                  labelString: "Bud",
                   fontSize: 20
                 },
               ticks: {
@@ -214,39 +208,32 @@ window.onload = function() {
         window.myScatter = myScatter;
       };
 
-/*document.getElementById('randomizeData').addacademicstListener('click', function() {
-    scatterChartData.datasets.forEach(function(dataset) {
-        dataset.data = dataset.data.map(function() {
-            return {
-                //x: randomScalingFactor(),
-                //y: randomScalingFactor()
-            };new
-        });
-    });
-    window.myScatter.update();
-});*/
 function toInteger(number){
     return Math.round( // round to nearest integer
     Number(number) // type cast your input
   );
 };
 var userScoresRef = firebase.database().ref('user-scores');
-userScoresRef.orderByChild("timestamp").limitToLast(5).on('child_added', function(data) {
-  console.log("fired");
-  var totalSocial = data.val()["total-social"];
-  var totalAcademic = data.val()["total-academic"];
+userScoresRef.orderByChild("timestamp").limitToLast(25).once('value').then(function(snapshot) {
+  // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  // ...
+  var val = snapshot.val();
+  const keys = Object.keys(val);
+  for (var i = 0; i < keys.length; i++) {
+    const key = keys[i];
 
-  var social = data.val().social;
-  var academic = data.val().academic;
+    var totalSocial = val[key]["total-social"];
+     var totalAcademic = val[key]["total-academic"];
 
-  console.log(social);
+     var social = val[key].social;
+     var academic = val[key].academic;
 
-  myScatter.data.datasets[0].data.push(
-    {
-      x: toInteger((social/totalSocial)*100),
-      y: toInteger((academic/totalAcademic)*100),
-    }
-  );
+     myScatter.data.datasets[0].data.push(
+         {
+           x: toInteger((social/totalSocial)*100),
+           y: toInteger((academic/totalAcademic)*100),
+         }
+       );
+  }
   myScatter.update();
-
 });
