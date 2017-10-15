@@ -10,7 +10,25 @@ firebase.database().ref('questions').on('value', function(snapshot) {
   // console.log(snapshot.val())
   var snapshotMap = snapshot.val();
   var keys = Object.keys(snapshotMap);
-  for (var i = 0; i < keys.length; i++) {
+
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  while (0 !== currentIndex) {
+
+  randomIndex = Math.floor(Math.random() * currentIndex);
+  currentIndex -= 1;
+
+  temporaryValue = array[currentIndex];
+  array[currentIndex] = array[randomIndex];
+  array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+
+keys = shuffle(keys);
+
+  for (var i = 0; i < Math.min(keys.length, 15); i++) {
     var key = keys[i];
     // console.log(key);
     questionTypeMap[snapshotMap[key].question] = snapshotMap[key].type;
@@ -36,12 +54,14 @@ firebase.database().ref('questions').on('value', function(snapshot) {
 
 
 
-function writeUserScore(social, academic, timestamp) {
+function writeUserScore(social, totalSocial, academic, totalAcademic, timestamp) {
   firebase.database().ref('user-scores').push({
-    social: social,
-    academic: academic,
-    timestamp: timestamp
-  });rue
+    "social": social,
+    "academic": academic,
+    "total-social": totalSocial,
+    "total-academic": totalAcademic,
+    "timestamp": timestamp
+  });
 }
 
 function submitQuiz()
@@ -111,10 +131,16 @@ function submitQuiz()
   //   });
   // }
 
-  var timestamp = new Date().getTime()
+  var timestamp = new Date().getTime();
+  // var percentSocial = (social/totalSocial).toFixed(3)*100;
+  // var percentAcademic = (academic/totalAcademic).toFixed(3)*100;
+
+  // console.log(percentAcademic);
+  // console.log(percentSocial);
+
 
   // document.getElementById("printed").innerHTML = odd+even;
-  writeUserScore(odd, even, timestamp);
+  writeUserScore(social, totalSocial, academic, totalAcademic, timestamp);
   //writeQuestion("consistency", "Whats the diff between Jam and Jelly?");
   //writeQuestion("it hurt when i did", "Did it hurt when you fell from Tennessee?");
 }

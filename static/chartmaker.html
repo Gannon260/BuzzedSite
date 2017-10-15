@@ -53,6 +53,7 @@
   }
           ]
         };
+        console.log("are");
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
             var myScatter = Chart.Scatter(ctx, {
@@ -66,11 +67,19 @@
                     scales: {
                       xAxes: [{
                         ticks: {
+                          beginAtZero: true,
+                          steps: 10,
+                          stepValue: 5,
+                          max: 100,
                           fontSize: 20
                         }
                       }],
                       yAxes: [{
-                        ticks: {
+                      ticks: {
+                beginAtZero: true,
+                steps: 10,
+                stepValue: 5,
+                max: 100,
                           fontSize: 20
                         }
                       }]
@@ -91,15 +100,26 @@
             });
             window.myScatter.update();
         });*/
-
+        function toInteger(number){
+            return Math.round( // round to nearest integer
+            Number(number) // type cast your input
+          );
+        };
         var userScoresRef = firebase.database().ref('user-scores');
         userScoresRef.orderByChild("timestamp").limitToLast(5).on('child_added', function(data) {
+          console.log("fired");
+          var totalSocial = data.val()["total-social"];
+          var totalAcademic = data.val()["total-academic"];
+
           var social = data.val().social;
-          var academics = data.val().academics;
+          var academic = data.val().academic;
+
+          console.log(social);
+
           myScatter.data.datasets[0].data.push(
             {
-              x: social,
-              y: academics
+              x: toInteger((social/totalSocial)*100),
+              y: toInteger((academic/totalAcademic)*100),
             }
           );
           myScatter.update();
