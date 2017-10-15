@@ -20,12 +20,12 @@ firebase.database().ref('questions').on('value', function(snapshot) {
 
 
 
-function writeUserScore(social, academics, timestamp) {
+function writeUserScore(social, academic, timestamp) {
   firebase.database().ref('user-scores').push({
     social: social,
-    academics: academics,
+    academic: academic,
     timestamp: timestamp
-  });
+  });rue
 }
 
 function submitQuiz()
@@ -37,13 +37,15 @@ function submitQuiz()
   var odd=0;
   var even=0;
 
+
   for (var i=0; i<inputElems.length; i++) {
-    if(i%2 == 0 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)consistency
+    if(i%2 == 0 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)
     {
       odd++;
 
     }
-    if(i%2 == 1 && inputElems[i].type == "checkbox" && inputElems[i].checked == true)
+    if(i%2 == 1 && inputElems[i].type == "checkbox"
+     && inputElems[i].checked == true)
     {
       even++;
 
