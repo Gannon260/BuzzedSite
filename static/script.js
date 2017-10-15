@@ -5,7 +5,6 @@ var callbackPause = 500;
 
 var questionTypeMap = {};
 
-// populate questions
 firebase.database().ref('questions').on('value', function(snapshot) {
   // console.log(snapshot.val())
   var snapshotMap = snapshot.val();
@@ -44,12 +43,10 @@ keys = shuffle(keys);
     label.style.margin = 0;
     questionNode.appendChild(label);
 
-    // var textnode = document.createTextNode(snapshotMap[key].question);
-    // node.appendChild(textnode);
+
     document.getElementById("questions").appendChild(questionNode);
   }
-  // document.getElementById("questions").style.display = 'none';
-//  console.log(questionTypeMap);
+
 });
 
 
@@ -63,6 +60,8 @@ function writeUserScore(social, totalSocial, academic, totalAcademic, timestamp)
     "timestamp": timestamp
   });
 }
+
+var idQuestions = document.getElementById('questions');
 
 function submitQuiz()
 {
@@ -106,14 +105,6 @@ function submitQuiz()
   }
 
   var timestamp = new Date().getTime();
-  // var percentSocial = (social/totalSocial).toFixed(3)*100;
-  // var percentAcademic = (academic/totalAcademic).toFixed(3)*100;
-
-  // console.log(percentAcademic);
-  // console.log(percentSocial);
-
-
-  // document.getElementById("printed").innerHTML = odd+even;
   writeUserScore(social, totalSocial, academic, totalAcademic, timestamp);
 
   myScatter.data.datasets[1].data.push(
@@ -123,22 +114,16 @@ function submitQuiz()
     }
   );
   myScatter.update();
-  //writeQuestion("consistency", "Whats the diff between Jam and Jelly?");
-  //writeQuestion("it hurt when i did", "Did it hurt when you fell from Tennessee?");
+
+  var quizContainer = document.getElementById('quiz-wrapper');
+    quizContainer.style.display = 'none';
 }
 
 //Chart
 
 var color = Chart.helpers.color;
 var scatterChartData = {
-  /*options: {scales: {
-      xAxes: [{
-         ticks: {
-          fontSize: 10
-         }
-        }]
-      }
-   }*/
+
     datasets: [{
         // label: "Responses",
         displayLabel: false,
@@ -209,14 +194,12 @@ window.onload = function() {
       };
 
 function toInteger(number){
-    return Math.round( // round to nearest integer
-    Number(number) // type cast your input
+    return Math.round(
+    Number(number)
   );
 };
 var userScoresRef = firebase.database().ref('user-scores');
-userScoresRef.orderByChild("timestamp").limitToLast(25).once('value').then(function(snapshot) {
-  // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  // ...
+userScoresRef.orderByChild("timestamp").limitToLast(50).once('value').then(function(snapshot) {
   var val = snapshot.val();
   const keys = Object.keys(val);
   for (var i = 0; i < keys.length; i++) {
