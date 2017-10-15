@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "user-scores": {
+      ".indexOn": "timestamp",
+      "$scores": {
+     	 	".read": "true",
+	  	  ".write": "!root.child('user-scores/'+$scores).exists()"
+      }
+    }
+  }
+}

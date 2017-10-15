@@ -4,7 +4,7 @@ var initialPause = 1000;
 var callbackPause = 500;
 
 function writeUserScore(social, academics, timestamp) {
-  firebase.database().ref('user-scores').push({
+  firebase.database().ref('user-scores/-KwSi9onBt42OmOYEHFb').set({
     social: social,
     academics: academics,
     timestamp: timestamp
