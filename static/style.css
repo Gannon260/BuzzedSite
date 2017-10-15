@@ -86,9 +86,9 @@ button{
 
 .newchart{
   float: center;
-  width: 75%;
-  height:75%;
-  margin-left: 13%;
+  width: 50%;
+  height: 50%;
+  margin-left: 25%;
   margin-right: 15%;
 }
 .wrapper{
