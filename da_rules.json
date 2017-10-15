@@ -2,14 +2,16 @@
   "rules": {
     "user-scores": {
       ".indexOn": "timestamp",
+        ".read": "true",
       "$scores": {
-     	 	".read": "true",
+
 	  	  ".write": "!root.child('user-scores/'+$scores).exists()"
       }
     },
     "questions": {
       ".read": "true",
     	".write": "false"
+
     }
   }
 }
