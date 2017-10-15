@@ -144,3 +144,109 @@ function submitQuiz()
   //writeQuestion("consistency", "Whats the diff between Jam and Jelly?");
   //writeQuestion("it hurt when i did", "Did it hurt when you fell from Tennessee?");
 }
+
+//Chart
+
+
+var color = Chart.helpers.color;
+var scatterChartData = {
+  /*options: {scales: {
+      xAxes: [{
+         ticks: {
+          fontSize: 10
+         }
+        }]
+      }
+   }*/
+    datasets: [{
+        label: "Responses",
+        pointRadius: 10,
+        borderColor: window.chartColors.blue,
+        backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
+        data: [{
+
+        }]
+}
+  ]
+};
+window.onload = function() {
+    var ctx = document.getElementById("canvas").getContext("2d");
+    var myScatter = Chart.Scatter(ctx, {
+        data: scatterChartData,
+        options: {
+            title: {
+                display: true,
+                text: 'Buzzinga',
+                fontSize: 20
+            },
+            scales: {
+              xAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: "Social",
+                  fontSize: 20
+                },
+                ticks: {
+                  beginAtZero: true,
+                  steps: 10,
+                  stepValue: 5,
+                  max: 100,
+                  fontSize: 20
+                }
+              }],
+              yAxes: [{
+                scaleLabel: {
+                  display: true,
+                  labelString: "Academic",
+                  fontSize: 20
+                },
+              ticks: {
+                beginAtZero: true,
+                steps: 10,
+                stepValue: 5,
+                max: 100,
+                    fontSize: 20
+                }
+              }]
+            }
+          }
+        });
+        window.myScatter = myScatter;
+      };
+
+/*document.getElementById('randomizeData').addacademicstListener('click', function() {
+    scatterChartData.datasets.forEach(function(dataset) {
+        dataset.data = dataset.data.map(function() {
+            return {
+                //x: randomScalingFactor(),
+                //y: randomScalingFactor()
+            };new
+        });
+    });
+    window.myScatter.update();
+});*/
+function toInteger(number){
+    return Math.round( // round to nearest integer
+    Number(number) // type cast your input
+  );
+};
+var userScoresRef = firebase.database().ref('user-scores');
+userScoresRef.orderByChild("timestamp").limitToLast(5).on('child_added', function(data) {
+  console.log("fired");
+  var totalSocial = data.val()["total-social"];
+  var totalAcademic = data.val()["total-academic"];
+
+  var social = data.val().social;
+  var academic = data.val().academic;
+
+  console.log(social);
+
+  myScatter.data.datasets[0].data.push(
+    {
+      x: toInteger((social/totalSocial)*100),
+      y: toInteger((academic/totalAcademic)*100),
+    }
+  );
+  myScatter.update();
+
+});
