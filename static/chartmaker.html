@@ -53,7 +53,6 @@
   }
           ]
         };
-        console.log("are");
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
             var myScatter = Chart.Scatter(ctx, {
@@ -61,11 +60,16 @@
                 options: {
                     title: {
                         display: true,
-                        text: 'Chart.js Scatter Chart',
+                        text: 'Buzzinga',
                         fontSize: 20
                     },
                     scales: {
                       xAxes: [{
+                        scaleLabel: {
+                          display: true,
+                          labelString: "Social",
+                          fontSize: 20
+                        },
                         ticks: {
                           beginAtZero: true,
                           steps: 10,
@@ -75,12 +79,17 @@
                         }
                       }],
                       yAxes: [{
-                      ticks: {
-                beginAtZero: true,
-                steps: 10,
-                stepValue: 5,
-                max: 100,
+                        scaleLabel: {
+                          display: true,
+                          labelString: "Academic",
                           fontSize: 20
+                        },
+                      ticks: {
+                        beginAtZero: true,
+                        steps: 10,
+                        stepValue: 5,
+                        max: 100,
+                            fontSize: 20
                         }
                       }]
                     }
