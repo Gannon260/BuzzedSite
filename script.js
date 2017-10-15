@@ -53,11 +53,10 @@ setTimeout(function() {
   });
 }, initialPause);
 
-function writeUserScore(name, odd, even) {
+function writeUserScore(social, academics) {
   firebase.database().ref('user-scores').push({
-    odd: odd,
-    name: name,
-    even: even
+    social: social,
+    academics: academics
   });
 }
 
@@ -81,5 +80,5 @@ function checkboxes()
 
   }
   document.getElementById("printed").innerHTML = odd+even;
-  writeUserScore(name, odd, even);
+  writeUserScore(odd, even);
 }

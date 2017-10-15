@@ -1,6 +1,20 @@
 <!doctype html>
 <html>
 <head>
+
+  <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyCJHF3U8lV2EVABu9KUnk2_5cARkps6Iv4",
+      authDomain: "buzzed-a95f9.firebaseapp.com",
+      databaseURL: "https://buzzed-a95f9.firebaseio.com",
+      projectId: "buzzed-a95f9",
+      storageBucket: "",
+      messagingSenderId: "888857455202"
+    };
+    firebase.initializeApp(config);
+  </script>
     <title>Scatter Chart</title>
     <script src="http://www.chartjs.org/dist/2.7.0/Chart.bundle.js"></script>
     <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
@@ -21,8 +35,7 @@
     <script>
         var color = Chart.helpers.color;
         var scatterChartData = {
-          /*options: {
-            scales: {
+          /*options: {scales: {
               xAxes: [{
                  ticks: {
                   fontSize: 10
@@ -31,63 +44,18 @@
               }
            }*/
             datasets: [{
-                label: "My First dataset",
-                borderColor: window.chartColors.red,
-                backgroundColor: color(window.chartColors.red).alpha(0.2).rgbString(),
-                data: [{
-                    x: 13,
-                    y: 23
-                }, {
-                    x: 12,
-                    y: 12
-                }, {
-                    x: 51,
-                    y: 12,
-                }, {
-                    x: 61,
-                    y: 23,
-                }, {
-                    x: 71,
-                    y: 62,
-                }, {
-                    x: 21,
-                    y: 84,
-                }, {
-                    x: 31,
-                    y: 45,
-                }]
-            }, {
-                label: "Everyone else",
+                label: "Responses",
                 borderColor: window.chartColors.blue,
                 backgroundColor: color(window.chartColors.blue).alpha(0.2).rgbString(),
                 data: [{
-                    x: 12,
-                    y: 51,
-                }, {
-                    x: 96,
-                    y: 52,
-                }, {
-                    x: 17,
-                    y: 45,
-                }, {
-                    x: 06,
-                    y: 94,
-                }, {
-                    x: 47,
-                    y: 87,
-                }, {
-                    x: 04,
-                    y: 57,
-                }, {
-                    x: 78,
-                    y: 64,
+
                 }]
-            }
+  }
           ]
         };
         window.onload = function() {
             var ctx = document.getElementById("canvas").getContext("2d");
-            window.myScatter = Chart.Scatter(ctx, {
+            var myScatter = Chart.Scatter(ctx, {
                 data: scatterChartData,
                 options: {
                     title: {
@@ -109,19 +77,35 @@
                     }
                   }
                 });
+                window.myScatter = myScatter;
               };
 
-        /*document.getElementById('randomizeData').addEventListener('click', function() {
+        /*document.getElementById('randomizeData').addacademicstListener('click', function() {
             scatterChartData.datasets.forEach(function(dataset) {
                 dataset.data = dataset.data.map(function() {
                     return {
                         //x: randomScalingFactor(),
                         //y: randomScalingFactor()
-                    };
+                    };new
                 });
             });
             window.myScatter.update();
         });*/
+
+        var userScoresRef = firebase.database().ref('user-scores');
+        userScoresRef.on('child_added', function(data) {
+          console.log(data.val());
+          var social = data.val().social;
+          var academics = data.val().academics;
+          myScatter.data.datasets[0].data.push(
+            {
+              x: social,
+              y: academics
+            }
+          );
+          myScatter.update();
+          console.log(myScatter.data.datasets);
+        });
     </script>
 </body>
 
