@@ -4,16 +4,16 @@
 
   <script src="https://www.gstatic.com/firebasejs/4.5.1/firebase.js"></script>
   <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyCJHF3U8lV2EVABu9KUnk2_5cARkps6Iv4",
-      authDomain: "buzzed-a95f9.firebaseapp.com",
-      databaseURL: "https://buzzed-a95f9.firebaseio.com",
-      projectId: "buzzed-a95f9",
-      storageBucket: "",
-      messagingSenderId: "888857455202"
-    };
-    firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCJHF3U8lV2EVABu9KUnk2_5cARkps6Iv4",
+    authDomain: "buzzed-a95f9.firebaseapp.com",
+    databaseURL: "https://buzzed-a95f9.firebaseio.com",
+    projectId: "buzzed-a95f9",
+    storageBucket: "",
+    messagingSenderId: "888857455202"
+  };
+  firebase.initializeApp(config);
   </script>
 
   <title>Buzzed</title>
@@ -21,20 +21,11 @@
 </head>
 
 <body>
-  <div id="navbar">
-    <ul>
-      <li><a href= "top10.html" class="Top">Top 10<img id="logo" src="buzz.png" alt="buzz" href="gatech.edu"></a>
-      </li>
+  <h1>How <span>BUZZED </span>Are You?</h1>
 
-
-    </ul>
-  </div>
-
-  <h1>How Buzzed are you</h1>
-
-
-  <div id="questions">
-    <input id="checkbox" type="checkbox" value="even">Slept in a GT building (other than a dormitory/apartment) </input>
+    <input id="checkbox" type="checkbox">Slept in a GT building (other than a dormitory/apartment) </input>
+  <div id="theparallax">
+  <div  class="parallax"></div>
     <br>
     <input id="checkbox" type="checkbox">Slept for more than 10 hours every day of the week</input>
     <br>
@@ -52,18 +43,16 @@
     <br>
     <input id="checkbox" type="checkbox">Use the GT Bus system everyday</input>
     <br>
-  </div>
+  </p>
 
+
+  </div>
   <div class="wrapper">
-      <button class="button" onclick="submitQuiz()">Buzz me in</button>
+    <button class="button" onclick="submitQuiz()">Buzz me in</button>
   </div>
-
-
-  <p id="printed"></p>
 
   <br/>
 
-</div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

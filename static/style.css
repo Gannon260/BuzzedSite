@@ -2,45 +2,42 @@
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 
+
 body{
-  color: yellow;
   font-family: 'Open Sans', sans-serif;
   color: #7f8c8d;
-  background-color: #fefefe;
-  margin: 5cm;
-  margin-top: 2em;
-}
-
-#navbar{
-  color: darkblue;
-}
-
-#navbar > ul {
-  margin: 0;
+  margin:0;
+  /*background-color: #f5f5f5;*/
   padding: 0;
-  list-style: none;
-  width: 100%;
-  text-align: center;
-  display: inline-block;
+  /*border-style: solid;
+  border-color: #00254c #00254c;*/
 }
 
-#navbar > ul > li {
-  margin: 0 2em;
-  display: inline-block;
-  float: right;
-  position: absolute;
+.banner {
+  width: 100%;
+  display: block;
+  margin: 0;
+  opacity: 10%;
+}
+
+span{
+  color: darkblue;
 }
 
 h1{
-  color: gold;
+  color: #C59353;
   font-size: 300%;
   text-align: center;
   font-family: 'Slabo 27px', serif;
+  margin: 0;
 }
 
-p{
+#theparallax{
   color: darkblue;
   margin: 1cm;
+  margin-left: 10cm;
+  margin-right: 10cm;
+  background: transparent;
 
 }
 
@@ -48,26 +45,35 @@ input{
   margin: 1em;
 }
 
-.nav-link {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  text-decoration: none;
-}
-
 a {
   color: #7f8c8d;
 }
+.parallax {
+    /* The image used */
+    background-image: url("buzzy.jpg");
 
-img {
-  border-radius: 20%;
-  width: 10%;
-  height: 10%;
+    /* Set a specific height */
+    height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 button{
   font-size: 100%;
+  margin-left: 10cm;
+  margin-right: 10cm;
+  float: center;
+  border-radius: 10%
 }
 .wrapper{
   text-align: center;
+}
+@media only screen and (max-device-width: 1024px) {
+    .parallax {
+        background-attachment: scroll;
+    }
 }
