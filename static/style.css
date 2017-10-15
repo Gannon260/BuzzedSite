@@ -69,6 +69,13 @@ button{
   float: center;
   border-radius: 10%;
 }
+.newchart{
+  float: center;
+  width: 75%;
+  height:75%;
+  margin-left: 13%;
+  margin-right: 15%;
+}
 .wrapper{
   text-align: center;
 }
